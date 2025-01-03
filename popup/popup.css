@@ -1,11 +1,14 @@
-.contenedor {
+.footer {
     display: flex;
-    justify-content:space-evenly
+    justify-content:space-evenly;
+    text-align: center;
+    position: sticky;
+    bottom: 0;
 }
 
 body {
     background-color: 434343;
-    
+    flex-direction: column;
 }
 
 h1 {
@@ -18,7 +21,7 @@ h1 {
 .btnP {
     background-color: #71b7c9; /* Fondo */
     /*border: none; /* Sin bordes */
-    padding: 10px 20px; /* Relleno */
+    padding: 7px 14px; /* Relleno */
     text-align: center; /* Texto centrado */
     text-decoration: none; /* Sin subrayado */
     display: inline-block; /* Alinear elementos en línea */
