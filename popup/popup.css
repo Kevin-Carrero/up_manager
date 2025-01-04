@@ -1,14 +1,7 @@
-.footer {
-    display: flex;
-    justify-content:space-evenly;
-    text-align: center;
-    position: sticky;
-    bottom: 0;
-}
-
 body {
     background-color: 434343;
     flex-direction: column;
+    width: 200px;
 }
 
 h1 {
@@ -16,6 +9,23 @@ h1 {
     font-family: 'Courier New', Courier, monospace;
     display: flex;
     justify-content: center;
+    align-items: center; 
+}
+
+h2 {
+    color: c0c0c0;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+h3 {
+    color: c0c0c0;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
 }
 
 .btnP {
@@ -26,11 +36,50 @@ h1 {
     text-decoration: none; /* Sin subrayado */
     display: inline-block; /* Alinear elementos en línea */
     font-size: 16px; /* Tamaño de fuente */
-    margin: 2px; /* Margen */
+    margin: 5px; /* Margen */
     cursor: pointer; /* Cursor tipo mano */
-    border-radius: 12px; /* Esquinas redondeadas */
+    border-radius: 10px; /* Esquinas redondeadas */
+    width: 70%;
 }
 
 .btnP:hover {
     background-color: #c0c0c0; /* Verde más oscuro al pasar el cursor */
+}
+
+input {
+    border-radius: 5px;
+    margin: 5px;
+    padding: 4px ;
+    width: 95%;
+    background-color: #c0c0c0;
+    color:black;
+}
+
+.footer {
+    display: flex;
+    justify-content:space-evenly;
+    text-align: center;
+    position: sticky;
+    bottom:auto;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.feet-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.feet-form a {
+    color: aliceblue;
+}
+
+.feet-form a:hover {
+    color:#71b7c9;
 }
