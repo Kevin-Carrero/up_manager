@@ -1,14 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
-    obtenerCuentas();
+    const token = localStorage.getItem('authToken'); // Obtener el token
 
-    function obtenerCuentas() {
-        fetch('http://ec2-18-222-218-203.us-east-2.compute.amazonaws.com:3000/accounts', {
+    if (!token) {
+        alert('No has iniciado sesión');
+        window.location.href = 'popup.html'; // Redirigir a la página de inicio de sesión si no hay token
+        return;
+    }
+
+    obtenerCuentas(token);
+
+    function obtenerCuentas(token) {
+        fetch('http://ec2-18-220-129-240.us-east-2.compute.amazonaws.com:3000/accounts', {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` // Añadir el token en los headers
             }
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
             if (data.cuentas) {
                 mostrarCuentas(data.cuentas);
@@ -20,8 +34,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function mostrarCuentas(cuentas) {
-        const cuentasContainer = document.getElementById('cuentas-container');
-        const cuentasList = document.getElementById('cuentas-list');
+        const cuentasContainer = document.getElementById('accounts-container');
+        const cuentasList = document.getElementById('accounts-list');
+        
+        if (!cuentasContainer || !cuentasList) {
+            console.error("No se encontraron los elementos 'accounts-container' o 'accounts-list' en el DOM");
+            return;
+        }
+
         cuentasList.innerHTML = ''; // Limpia la lista anterior
 
         cuentas.forEach(cuenta => {
