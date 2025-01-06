@@ -1,3 +1,5 @@
+import { login } from '../services/api.js';
+
 document.addEventListener('DOMContentLoaded', function() {
     const token = localStorage.getItem('authToken');
     if (token){
@@ -8,14 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
             var email = document.getElementById('email').value;
             var password = document.getElementById('password').value;
         
-            fetch('http://ec2-18-220-129-240.us-east-2.compute.amazonaws.com:3000/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email: email, password: password })
-            })
-            .then(response => response.json())
+            login(email, password)
             .then(data => {
                 if (data.message === 'Inicio de sesión exitoso') {
                     localStorage.setItem('authToken', data.token);

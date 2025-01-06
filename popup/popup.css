@@ -28,6 +28,13 @@ h3 {
     align-items: center; 
 }
 
+p {
+    color: c0c0c0;
+    font-family: 'Courier New', Courier, monospace;
+    align-items: center;
+    padding: 0;
+}
+
 .btnP {
     background-color: #71b7c9; /* Fondo */
     /*border: none; /* Sin bordes */
@@ -82,4 +89,14 @@ input {
 
 .feet-form a:hover {
     color:#71b7c9;
+}
+
+#accounts-container {
+    display: flex;
+    flex-direction: column;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
 }

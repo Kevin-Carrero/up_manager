@@ -1,3 +1,5 @@
+import { getAccounts } from '../services/api.js'
+
 document.addEventListener('DOMContentLoaded', function() {
     const token = localStorage.getItem('authToken'); // Obtener el token
 
@@ -10,19 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     obtenerCuentas(token);
 
     function obtenerCuentas(token) {
-        fetch('http://ec2-18-220-129-240.us-east-2.compute.amazonaws.com:3000/accounts', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}` // Añadir el token en los headers
-            }
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
+        getAccounts(token)
         .then(data => {
             if (data.cuentas) {
                 mostrarCuentas(data.cuentas);
@@ -46,10 +36,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
         cuentas.forEach(cuenta => {
             const listItem = document.createElement('li');
-            listItem.textContent = `Usuario: ${cuenta.user}, Contraseña: ${cuenta.password}`;
+            
+            const userSpan = document.createElement('p');
+            userSpan.textContent = cuenta.user;
+        
+            const passwordInput = document.createElement('input');
+            passwordInput.type = 'password';
+            passwordInput.value = cuenta.password;
+            passwordInput.readOnly = true;
+        
+            listItem.appendChild(userSpan);
+            listItem.appendChild(passwordInput);
             cuentasList.appendChild(listItem);
         });
+        
 
         cuentasContainer.style.display = 'block';
+    }
+
+    function addAccount(){
+
     }
 });
